@@ -13,14 +13,13 @@ module FerrumPdf
       )
     end
 
-    def render_mhtml(mhtml_options: {}, **rendering)
+    def render_mhtml(**rendering)
       content = render_to_string(**rendering.with_defaults(formats: [ :html ]))
 
       FerrumPdf.render_mhtml(
         html: content,
         host: request.base_url + "/",
-        protocol: request.protocol,
-        mhtml_options: mhtml_options
+        protocol: request.protocol
       )
     end
 

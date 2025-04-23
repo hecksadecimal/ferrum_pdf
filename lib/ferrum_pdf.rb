@@ -26,6 +26,12 @@ module FerrumPdf
       end
     end
 
+    def render_mhtml(html: nil, url: nil, host: nil, protocol: nil, authorize: nil, wait_for_idle_options: nil)
+      render(host: host, protocol: protocol, html: html, url: url, authorize: authorize, wait_for_idle_options: wait_for_idle_options) do |page|
+        page.mhtml
+      end
+    end
+
     def render_screenshot(html: nil, url: nil, host: nil, protocol: nil, authorize: nil, screenshot_options: {})
       render(host: host, protocol: protocol, html: html, url: url, authorize: authorize) do |page|
         page.screenshot(**screenshot_options.with_defaults(encoding: :binary, full: true))
